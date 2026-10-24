@@ -1,0 +1,19 @@
+{
+    "magic": [
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" }
+    ],
+
+    "monster": [
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" }
+    ],
+
+    "billboard": [
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
+        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" }
+    ]
+}
