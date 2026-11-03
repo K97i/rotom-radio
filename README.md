@@ -1,5 +1,7 @@
-# rotom-radio
-
+<div align=center>
+    <h1>rotom-radio</h1>
+    <img width="500px" src="./assets/rotom-radio-01.png"/>
+</div>
 rotom-radio is a repository containing all the scripts I wrote during my time at Green Giant FM, De La Salle University's student radio organization
 
 # How to Run
