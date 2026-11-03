@@ -1,0 +1,1 @@
+from .module import tryConvert as convert
