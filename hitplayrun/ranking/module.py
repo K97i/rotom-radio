@@ -1,4 +1,4 @@
-from songClass.songClass import Song
+from ..songClass import Song
 
 from collections import defaultdict
 import tkinter as tk
@@ -118,5 +118,20 @@ class Ranking:
             # Ranking.prettyPrint(finalList)
             Ranking.boringPrint(finalList)
 
-            # Return final list
-            return finalList
+            root = tk.Tk()
+            root.withdraw()
+
+            filePath = filedialog.asksaveasfilename(
+                title="Save final list",
+                filetypes=[("JSON files", "*.json")]
+            )
+
+            if filePath:
+                with open(filePath, "w", encoding="utf-8") as file:
+                    serialized = {
+                        i + 1: song.to_dict() 
+                        for i, song in enumerate(finalList)
+                    }
+                    json.dump(serialized, file)
+            else:
+                print("User canceled the selection.")

@@ -1,0 +1,6 @@
+__pycache__
+actual.json
+.venv
+build
+dist
+rotom-radio.spec

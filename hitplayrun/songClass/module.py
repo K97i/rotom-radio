@@ -26,3 +26,11 @@ class Song:
 
     def __hash__(self):
         return hash((self.title.lower(), self.artist.lower()))
+
+    def to_dict(self):
+        return {
+            "Title": self.title,
+            "Artist": self.artist,
+            "Last Position": self.lastPosition,
+            "Hotness": str(self.hotness) if self.hotness else "0:00:00",
+        }
