@@ -12,7 +12,7 @@ lists = {
     "monster": "https://www.rx931.com/CountdownTop7"
 }
 
-implemented = [ "magic", "billboard" ]
+implemented = [ "magic", "billboard", "monster" ]
 
 SONG_LIMIT = 20
 
@@ -48,7 +48,7 @@ def getmagic(html):
             form = formdiv.find('form')
             
             if form:
-                magicParseForm(form=form)
+                return magicParseForm(form=form)
 
         else:
             print("[ERROR]: Div containing form not found.")
@@ -62,18 +62,42 @@ def getbillboard(html):
     finalList = {}
     chart = html.find("div", class_="charts__container")
     
-    idx = 0
+    idx = 1
 
     for song in chart.children:
         if song.name == "div" and song.get("class") == ['row', 'g-0', 'b-bottom', 'ad-selector']:
             idx += 1
             weekRank = song.find("span").text
-            titles = chart.find("div", class_="title__container")
+            titles = song.find("div", class_="title__container")
 
             finalList[weekRank] = Song(title=titles.find("h4").text, artist=titles.find("span").text)
 
         if idx > SONG_LIMIT:
             break
+
+    return finalList
+
+# Monster
+
+def getmonster(html):
+    finalList = {}
+    chart = html.find("div", class_="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-9 mb-4")
+
+    # Visible
+    songs = chart.find_all(class_="card bg-medium-gray text-light", recursive=False)
+    
+    for song in songs:
+        rank = song.find("div", class_="col-2 col-sm-1 align-self-center text-center").text.strip()
+        titles = list(song.find("div", class_="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5 text-center").find("div", class_="text-light").stripped_strings)
+        finalList[rank] = Song(title=titles[0], artist=titles[1])
+
+    # Invisible
+    songs = chart.select_one("#more-charts").find_all(class_="card bg-medium-gray text-light", recursive=False)
+    
+    for song in songs:
+        rank = song.find("div", class_="col-2 col-sm-1 align-self-center text-center").text.strip()
+        titles = list(song.find("div", class_="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5 text-center").find("div", class_="text-light").stripped_strings)
+        finalList[rank] = Song(title=titles[0], artist=titles[1])
 
     return finalList
 
@@ -83,11 +107,13 @@ def pull():
     collated = dict()
     for item, value in lists.items():
         if item in implemented:
-            response = requests.get(value, timeout=10)
+            response = requests.get(value, headers=HEADERS, timeout=10)
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'html.parser')
                 collated[item] = globals()[f"get{item}"](soup)
                 
         else:
             print(f"{item} is not implemented yet.")
+
+    return collated
 
