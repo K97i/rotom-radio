@@ -8,7 +8,9 @@ lists = {
     "monster": "https://www.rx931.com/CountdownTop7"
 }
 
-implemented = [ "magic", ]
+implemented = [ "magic", "billboard" ]
+
+SONG_LIMIT = 20
 
 # MAGIC
 
@@ -49,6 +51,27 @@ def getmagic(html):
         
     else:
         print("[ERROR]: Header not found")
+
+# Billboard
+
+def getbillboard(html):
+    finalList = {}
+    chart = html.find("div", class_="charts__container")
+    
+    idx = 0
+
+    for song in chart.children:
+        if song.name == "div" and song.get("class") == ['row', 'g-0', 'b-bottom', 'ad-selector']:
+            idx += 1
+            weekRank = song.find("span").text
+            titles = chart.find("div", class_="title__container")
+
+            finalList[weekRank] = Song(title=titles.find("h4").text, artist=titles.find("span").text)
+
+        if idx > SONG_LIMIT:
+            break
+
+    return finalList
 
 # Main Func
 
