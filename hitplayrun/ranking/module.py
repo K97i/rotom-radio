@@ -47,7 +47,7 @@ class Ranking:
     @staticmethod
     def boringPrint(data: list[Song]):
         """
-        Prints the given list in a pasteable
+        Prints the given list in a pasteable format
         
         Args:
             data (list[Song]): Final list
@@ -67,19 +67,24 @@ class Ranking:
         Returns:
             (list[list[Song]]): Lists of all song lists
         """
-        return [
-            [
-                Song (
-                    title=song["title"], 
-                    artist=song["artist"], 
-                    lastPosition=song["lastPosition"], 
-                    hotness=song["hotness"]
-                )
-                for song in item
-            ]
 
-            for item in data.values()
-        ]
+        lists = []
+
+        for chart_name, item in data.items():
+            song_list = []
+
+            for song in item.values():
+                song_list.append(
+                    Song(
+                        title=song.get("Title", ""),
+                        artist=song.get("Artist", ""),
+                        lastPosition=song.get("Last Position"),
+                        hotness=song.get("Hotness", "0:00:00")
+                    )
+                )
+            lists.append(song_list)
+
+        return lists
 
     @staticmethod
     def merge(lists: list[list[Song]]):

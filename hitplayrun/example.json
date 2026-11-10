@@ -1,19 +1,64 @@
 {
-    "magic": [
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" }
-    ],
+    "magic": {
+        "1": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        },
+        "2": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        },
+        "3": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        }
+    },
 
-    "monster": [
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" }
-    ],
+    "monster": {
+        "1": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        },
+        "2": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        },
+        "3": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        }
+    },
 
-    "billboard": [
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" },
-        { "title": "", "artist": "", "lastPosition": -1, "hotness": "" }
-    ]
+    "billboard": {
+        "1": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        },
+        "2": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        },
+        "3": {
+            "Title": "",
+            "Artist": "",
+            "Last Position": null,
+            "Hotness": "0:00:00"
+        }
+    }
 }

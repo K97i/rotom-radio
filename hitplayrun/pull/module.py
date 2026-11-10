@@ -100,11 +100,21 @@ def getmonster(html):
     for song in songs:
         rank = song.find("div", class_="col-2 col-sm-1 align-self-center text-center").text.strip()
         titles = list(song.find("div", class_="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5 text-center").find("div", class_="text-light").stripped_strings)
-        finalList[rank] = Song(title=titles[0], artist=titles[1]).to_dict()
+        finalList[rank] = Song(title=titles[0], artist=titles[1 if titles.__len__() <= 2 else 2]).to_dict()
 
     return finalList
 
 # Main Func
+
+def boringPrint(data: list[Song]):
+    """
+    Prints the given list in a pasteable format
+    
+    Args:
+        data (list[Song]): Final list
+    """
+    for _, chart in data.items():
+        print(f"{chart["Artist"]} - {chart["Title"]}")
 
 def pull():
     collated = dict()
@@ -114,6 +124,8 @@ def pull():
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'html.parser')
                 collated[item] = globals()[f"get{item}"](soup)
+                print(f"{item}: ")
+                boringPrint(collated[item])
                 
         else:
             print(f"{item} is not implemented yet.")
